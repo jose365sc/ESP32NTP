@@ -8,3 +8,5 @@ ESP32/ESP8266 speaking pseudo GPS messages to Serial, only for time sync purpose
 - fixed 4800 baud, TX and TX2(ESP32 only)
 - OTA support (no auth)
 - mDNS enabled.
+
+I have made this project with ESP01 for https://github.com/jose365sc/akafugu_nixie_clock.
