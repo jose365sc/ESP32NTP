@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"name": "ESP32NTP",
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.windows": {
+			"PATH": "C:\\Users\\schino\\.platformio\\penv\\Scripts;C:\\Users\\schino\\.platformio\\penv;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Program Files\\EmEditor;C:\\Users\\schino\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Users\\schino\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\schino\\AppData\\Roaming\\npm;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Program Files\\TortoiseGit\\bin;C:\\Program Files\\EmEditor;C:\\Users\\schino\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Users\\schino\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\schino\\AppData\\Roaming\\npm",
+			"PLATFORMIO_CALLER": "vscode"
+		}
+	}
+}
