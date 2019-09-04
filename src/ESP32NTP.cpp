@@ -6,6 +6,7 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 #include <ArduinoOTA.h>
+typedef ESP8266WebServer WebServer;
 #else
 #include <WiFi.h>
 #include <DNSServer.h>
@@ -17,22 +18,25 @@
 
 #include <time.h>
 
-#define ENABLE_ACTIVITY_LED
+//#define ENABLE_ACTIVITY_LED
 //#define PIN_ACTIVITY_LED LED_BUILTIN
 #define PIN_ACTIVITY_LED 10
+#define ENABLE_SERIAL2_OUTPUT
 #define ENABLE_MDNS_SERVICE
 #define ENABLE_ARDUINO_OTA
 
-#if !defined(ESP8266)
-//# define ENABLE_SERIAL2_OUTPUT
+#if defined(ENABLE_ARDUINO_OTA) && defined(ENABLE_MDNS_SERVICE)
+// ARDUINO_OTA includes mDNS service
+#undef ENABLE_MDNS_SERVICE
 #endif
 
-#if defined(ESP8266)
-typedef ESP8266WebServer WebServer;
+#if defined(ESP8266) && defined(ENABLE_SERIAL2_OUTPUT)
+// because ESP8266 has only one serial, this option is available only for ESP32
+#undef ENABLE_SERIAL2_OUTPUT
 #endif
 
 WebServer Server;
-//AutoConnectConfig Config;
+AutoConnectConfig Config("esp8266ntp", "12345678");
 AutoConnect Portal(Server);
 
 char g_ntp_server[64] = "pool.ntp.org";
@@ -94,8 +98,8 @@ void setup()
 
   // setup AutoConnect
   Server.on("/", rootPage);
-//  Config.autoReset = true;
-//  Portal.config(Config);
+  Config.autoReconnect = true;
+  Portal.config(Config);
   if (Portal.begin())
   {
     Serial.println("WiFi connected: " + WiFi.localIP().toString());
@@ -110,6 +114,7 @@ void setup()
 
 #if defined(ENABLE_ARDUINO_OTA)
   // setup OTA
+  ArduinoOTA.setHostname("esp8266ntp");
   ArduinoOTA.onStart([]() {
     String type;
     if (ArduinoOTA.getCommand() == U_FLASH)
@@ -140,6 +145,7 @@ void setup()
       Serial.println("End Failed");
   });
   ArduinoOTA.begin();
+  MDNS.addService("http", "tcp", 80);
 #endif
 
 #if defined(ENABLE_ACTIVITY_LED)
@@ -163,7 +169,7 @@ void loop()
   Portal.handleClient();
 
   // for OTA
-#if defined(ENABLE_ARDIONO_OTA)
+#if defined(ENABLE_ARDUINO_OTA)
   ArduinoOTA.handle();
 #endif
 
